@@ -1,5 +1,7 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import MyComponent from '../components/Myconponent';
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         >
           Hello world
         </a>
+        <MyComponent></MyComponent>
       </header>
     </div>
   );
