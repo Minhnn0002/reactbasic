@@ -1,24 +1,36 @@
 import React from "react";
+import AddComponent from "./AddComponent";
+import ChildComponent from "./ChildComponent";
 class MyComponent extends React.Component {
 
     state = {
-        FullName: "Ngoc minh",
-        Company: "TMA Solution"
+        project: [
+            { id: 1, projectName: "nokia", detail: "java backend" },
+            { id: 2, projectName: "sphera", detail: "react js" },
+            { id: 3, projectName: "Icon", detail: "Csharp backend" }
+        ]
     }
-    handleOnChangeName = (event) => {
+
+    AddNewProject = (project) => {
         this.setState({
-            FullName: event.target.value
+            project: [...this.state.project, project]
+        })
+    }
+
+    DeleteProject = (project) => {
+        let tempProjects = this.state.project.filter(item => item.id !== project.id)
+        this.setState({
+            project: tempProjects
         })
     }
 
     render() {
         return (
-            <div>
-                <input value={this.state.FullName} type="text"
-                    onChange={(event) => this.handleOnChangeName(event)}></input>
-                {this.state.FullName}
-                {this.state.Company}
-            </div>
+            <>
+                <ChildComponent project={this.state.project} DeleteProject={this.DeleteProject} />
+                <br />
+                <AddComponent AddNewProject={this.AddNewProject} />
+            </>
         )
     }
 }
